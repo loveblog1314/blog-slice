@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itsure.admin.mapper.ArticleMapper">
+
+    <resultMap type="com.itsure.admin.entity.Article" id="BaseResultMap">
+                        <id column="id" property="id" />
+                                <result property="menuId" column="menu_id"/>
+                                <result property="title" column="title"/>
+                                <result property="content" column="content"/>
+                                <result property="createTime" column="create_time"/>
+                                <result property="thumb" column="thumb"/>
+                                <result property="originType" column="origin_type"/>
+                                <result property="author" column="author"/>
+                                <result property="hits" column="hits"/>
+                                <result property="updateTime" column="update_time"/>
+                </resultMap>
+
+</mapper>
