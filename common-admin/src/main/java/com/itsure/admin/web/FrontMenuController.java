@@ -1,10 +1,13 @@
 package com.itsure.admin.web;
 
+import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.itsure.admin.dto.ResultInfo;
 import com.itsure.admin.entity.Menu;
+import com.itsure.admin.entity.Permission;
 import com.itsure.admin.service.IMenuService;
+import com.itsure.admin.service.IPermissionService;
 import com.itsure.admin.util.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
@@ -29,6 +32,8 @@ import java.util.List;
 public class FrontMenuController {
     @Resource
     private IMenuService iMenuService;
+    @Resource
+    private IPermissionService iPermissionService;
 
     @RequestMapping("/*")
     public void toHtml(){
@@ -76,19 +81,21 @@ public class FrontMenuController {
     public @ResponseBody
     ResultInfo<List<Menu>> parentSelectData(Integer id) {
         List<Menu> list = new ArrayList<>();
-        Menu root = new Menu();
-        root.setId(0);
-        root.setName("一级目录");
-        root.setDesc("一级目录");
-        list.add(root);
-        Menu condition = new Menu();
+        Permission condition = new Permission();
         condition.setId(id);
-        EntityWrapper<Menu> wrapper = new EntityWrapper<>(condition);
+        EntityWrapper<Permission> wrapper = new EntityWrapper<>(condition);
         if (null == id) {
-            wrapper = null;
+            Permission condition1 = new Permission();
+            condition1.setParentId(34);
+            wrapper = new EntityWrapper<>(condition1);
         }
-        List definedMenu =  iMenuService.selectList(wrapper);
-        list.addAll(definedMenu);
+        List<Permission> definedMenu = iPermissionService.selectList(wrapper);
+        for (Permission menu : definedMenu) {
+            Menu m = new Menu();
+            m.setId(menu.getId());
+            m.setName(menu.getPermissionName());
+            list.add(m);
+        }
         return new ResultInfo<>(list);
     }
 

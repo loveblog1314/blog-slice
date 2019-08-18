@@ -28,7 +28,8 @@ layui.use(['form','layer','table'],function(){
 		    {field: 'originType', title: '来源', minWidth:100, align:"center"},
 		    {field: 'author', title: '作者', minWidth:100, align:"center"},
 		    {field: 'hits', title: '浏览量', minWidth:100, align:"center"},
-		    {field: 'updateTime', title: '更新时间', minWidth:100, align:"center"}
+		    {field: 'updateTime', title: '更新时间', minWidth:100, align:"center"},
+		    {field: 'status', title: '状态', minWidth:100, align:"center"}
 		 ]]
     });
 
@@ -61,13 +62,18 @@ layui.use(['form','layer','table'],function(){
 					                    body.find("#id").val(edit.id);
 					                    body.find("#menuId").val(edit.menuId);
 					                    body.find("#title").val(edit.title);
+					                    body.find("#desc").val(edit.desc);
 					                    body.find("#content").val(edit.content);
 					                    body.find("#edit").val(edit.content);
 					                    body.find("#createTime").val(edit.createTime);
 					                    body.find("#thumb").val(edit.thumb);
 					                    body.find("#originType").val(edit.originType);
 					                    body.find("#author").val(edit.author);
+					                    body.find("#skillStack").val(edit.skillStack);
 					                    body.find("#hits").val(edit.hits);
+					                    body.find("#codeUrl").val(edit.codeUrl);
+					                    body.find("#referenceUrl").val(edit.referenceUrl);
+					                    body.find("#status").val(edit.status);
 					                    form.render();
                 } else {
                     body.find("#menuId").val(router);

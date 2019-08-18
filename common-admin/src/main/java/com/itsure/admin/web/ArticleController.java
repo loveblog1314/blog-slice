@@ -54,6 +54,7 @@ public class ArticleController extends  BaseController{
             article.setCreateTime(new Date());
             article.setUpdateTime(new Date());
             article.setAuthor(userInfo.getUserName());
+            article.setWordCount(count(article.getContent()));
             boolean b = iArticleService.insert(article);
             return new ResultInfo<>(b);
         } else {
@@ -75,6 +76,7 @@ public class ArticleController extends  BaseController{
     public @ResponseBody
     ResultInfo<Boolean> edit(Article article){
         article.setUpdateTime(new Date());
+        article.setWordCount(count(article.getContent()));
         boolean b = iArticleService.updateById(article);
         return new ResultInfo<>(b);
     }
@@ -89,4 +91,13 @@ public class ArticleController extends  BaseController{
         return new ResultInfo<>(pageObj.getRecords(), pageObj.getTotal());
     }
 
+    public static int count(String text) {
+        String Reg="^[\u4e00-\u9fa5]{1}$";//正则
+        int result=0;
+        for(int i=0;i<text.length();i++){
+            String b=Character.toString(text.charAt(i));
+            if(b.matches(Reg))result++;
+        }
+        return result;
+    }
 }

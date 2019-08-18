@@ -36,8 +36,6 @@ layui.use(['form','layer'],function(){
 
     $.post("/menu/menuSelectData",function(data){
                 var parentSelectDataList = data.data;
-                $("#menuSelect").empty();//清空下拉列表
-                $("#menuSelect").append("<option value=''>请选择菜单</option>");
                 parentSelectDataList.forEach(function(e){
                     $("#menuSelect").append("<option value='"+e.id+"'>"+e.name+"</option>");
                 });
@@ -51,6 +49,12 @@ layui.use(['form','layer'],function(){
                 $("#originTypeSelect").append("<option value='1'>网络</option>");
                 if($("#originType").val()!=="") {
                     $("#originTypeSelect").val($("#originType").val());
+                }
+                $("#statusSelect").empty();//清空下拉列表
+                $("#statusSelect").append("<option value='0'>已完毕</option>");
+                $("#statusSelect").append("<option value='1'>连载中</option>");
+                if($("#status").val()!=="") {
+                    $("#statusSelect").val($("#status").val());
                 }
                 form.render('select');//重新渲染
             });

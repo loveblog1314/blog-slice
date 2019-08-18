@@ -17,6 +17,7 @@
     <input type="hidden" value="" id="id" name="id">
     <input type="hidden" value="" id="menuId">
     <input type="hidden" value="" id="originType">
+    <input type="hidden" value="" id="status">
 
                     <div class="layui-form-item">
         <label class="layui-form-label">菜单名称</label>
@@ -32,11 +33,17 @@
             <input type="text" class="layui-input" id="title" name="title" lay-verify="required" placeholder="请输入">
         </div>
     </div>
-    <div class="layui-form-item" style="height:400px;width:100%">
+    <div class="layui-form-item">
+        <label class="layui-form-label">描述</label>
+        <div class="layui-input-block">
+            <textarea name="desc" style="height:50px;width:100%" id="desc" lay-verify="required"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
         <label class="layui-form-label">内容</label>
         <div class="layui-input-block">
             <input type="hidden" value="" name="edit" id="edit">
-            <textarea id="content" name="content" style="height:400px;width:100%"></textarea>
+            <textarea id="contents" name="content"></textarea>
         </div>
     </div>
     <div class="layui-form-item" style="margin-top:100px;">
@@ -64,6 +71,36 @@
         </div>
     </div>
 
+    <div class="layui-form-item">
+        <label class="layui-form-label">技术栈</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" id="skillStack" name="skillStack" lay-verify="required" placeholder="请输入">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">代码地址</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" id="codeUrl" name="codeUrl"  placeholder="请输入">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">关联资料</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" id="referenceUrl" name="referenceUrl"  placeholder="请输入">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">状态</label>
+        <div class="layui-input-block">
+            <select name="status" id="statusSelect" lay-filter="status" lay-verify="required">
+                <option value="">请选择文章状态</option>
+            </select>
+        </div>
+    </div>
+
             <div class="layui-form-item">
         <button class="layui-btn layui-block" lay-filter="addArticle" lay-submit>保存</button>
     </div>
@@ -83,8 +120,8 @@
 <script>
 
 $(document).ready(function (){
-    var ue = UE.getEditor('content',{
-        autoHeight: false
+    var ue = UE.getEditor('contents',{
+        autoHeight: true,
     });
      ue.ready(function(){
         var text = document.getElementById("edit");

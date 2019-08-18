@@ -37,6 +37,9 @@ public class Article extends Model<Article> {
 	 */
 	    @TableField("title")
 			private String title;
+
+	    @TableField("desc")
+		private String desc;
 	/**
 	 * 
 	 */
@@ -63,17 +66,32 @@ public class Article extends Model<Article> {
 	 */
 	    @TableField("author")
 			private String author;
+
+	    @TableField("skill_stack")
+			private String skillStack;
 	/**
 	 * 
 	 */
 	    @TableField("hits")
 			private Integer hits;
+
+	    @TableField("status")
+			private Integer status;
 	/**
 	 * 
 	 */
 	    @TableField("update_time")
 		    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
 		private Date updateTime;
+
+	    @TableField("word_count")
+	    private Integer wordCount;
+
+	    @TableField("code_url")
+		private String codeUrl;
+
+		@TableField("reference_url")
+	    private String referenceUrl;
 
 	/**
 	 * 设置：
@@ -201,19 +219,73 @@ public class Article extends Model<Article> {
 		return this.id;
 	}
 
-	@Override
-	public String toString() {
+	public String getDesc() {
+		return desc;
+	}
+
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
+
+	public String getSkillStack() {
+		return skillStack;
+	}
+
+	public void setSkillStack(String skillStack) {
+		this.skillStack = skillStack;
+	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
+	public Integer getWordCount() {
+		return wordCount;
+	}
+
+	public void setWordCount(Integer wordCount) {
+		this.wordCount = wordCount;
+	}
+
+	public String getCodeUrl() {
+		return codeUrl;
+	}
+
+	public void setCodeUrl(String codeUrl) {
+		this.codeUrl = codeUrl;
+	}
+
+	public String getReferenceUrl() {
+		return referenceUrl;
+	}
+
+	public void setReferenceUrl(String referenceUrl) {
+		this.referenceUrl = referenceUrl;
+	}
+
+	@java.lang.Override
+	public java.lang.String toString() {
 		return "Article{" +
 				"id=" + id +
 				", menuId=" + menuId +
 				", title='" + title + '\'' +
+				", desc='" + desc + '\'' +
 				", content='" + content + '\'' +
 				", createTime=" + createTime +
 				", thumb='" + thumb + '\'' +
 				", originType=" + originType +
 				", author='" + author + '\'' +
+				", skillStack='" + skillStack + '\'' +
 				", hits=" + hits +
+				", status=" + status +
 				", updateTime=" + updateTime +
+				", wordCount=" + wordCount +
+				", codeUrl='" + codeUrl + '\'' +
+				", referenceUrl='" + referenceUrl + '\'' +
 				'}';
 	}
 }
